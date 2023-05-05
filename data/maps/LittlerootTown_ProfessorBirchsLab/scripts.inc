@@ -1,3 +1,14 @@
+LittlerootTown_ProfessorBirchsLab_GiveDexNav::
+	msgbox TakeDexNav
+	playfanfare MUS_OBTAIN_ITEM
+	message RecieveDexNav
+	setflag FLAG_SYS_DEXNAV_GET
+	waitfanfare
+	msgbox ExplainDexNav
+	closemessage
+	return
+
+
 .set LOCALID_AIDE, 1
 .set LOCALID_BIRCH, 2
 .set LOCALID_RIVAL, 3
@@ -513,8 +524,10 @@ EventScript_RegisterProfBirch::
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT
-	closemessage
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT		
+
+	call LittlerootTown_ProfessorBirchsLab_GiveDexNav	
+
 	applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
@@ -999,3 +1012,16 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+
+TakeDexNav::
+	.string "PROF. BIRCH: Oh! I almost forgot.\n"
+	.string "Here, you should also have this.$"
+
+RecieveDexNav::
+	.string "{PLAYER} received the DexNav!$"
+
+ExplainDexNav::
+	.string "PROF. BIRCH: The DexNav allows you to\n"
+	.string "search for specific POKéMON in an area.\p"
+	.string "I've no doubt that you'll find it useful\n"
+	.string "in filling out the POKéDEX.$"
