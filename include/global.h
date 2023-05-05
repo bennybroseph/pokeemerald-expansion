@@ -1003,9 +1003,9 @@ struct SaveBlock1
               struct ItemSlot bagPocket_BattleItems[BAG_BATTLEITEMS_COUNT];
               struct ItemSlot bagPocket_Treasures[BAG_TREASURES_COUNT];
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
-    /*0x988*/ u8 filler1[0x34]; // Previously Dex Flags, feel free to remove.
+    /*0x988*/ //u8 filler1[0x34]; // Previously Dex Flags, feel free to remove.
     /*0x9BC*/ u16 berryBlenderRecords[3];
-    /*0x9C2*/ u8 unused_9C2[6];
+    /*0x9C2*/ //u8 unused_9C2[6];
     /*0x9C8*/ u16 trainerRematchStepCounter;
     /*0x9CA*/ u8 trainerRematches[MAX_REMATCH_ENTRIES];
     /*0xA2E*/ //u8 padding3[2];
@@ -1065,7 +1065,7 @@ struct SaveBlock1
     /*0x3???*/ struct RecordMixingGift recordMixingGift;
     /*0x3???*/ LilycoveLady lilycoveLady;
     /*0x3???*/ struct TrainerNameRecord trainerNameRecords[20];
-    /*0x3???*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
+    /*0x3???*/ //u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3???*/ struct TrainerHillSave trainerHill;
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
                u8 dexNavSearchLevels[NUM_SPECIES];
