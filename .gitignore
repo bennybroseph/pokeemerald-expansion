@@ -55,3 +55,4 @@ prefabs.json
 *.js
 agbcc/
 /*.zip
+log.txt
