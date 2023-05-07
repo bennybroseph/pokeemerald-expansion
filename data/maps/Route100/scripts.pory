@@ -1,0 +1,83 @@
+const LOCALID_LANCE = 1
+
+mapscripts Route100_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call(Route100_EventScript_SetLancePosition)
+    }
+}
+
+script Route100_EventScript_SetLancePosition {
+    if(!flag(FLAG_SYS_POKEMON_GET)) {
+        setobjectxyperm(LOCALID_LANCE, 17, 13)
+    }
+    else {
+        setobjectmovementtype(LOCALID_LANCE, MOVEMENT_TYPE_WANDER_AROUND)
+    }
+}
+
+script Route100_EventScript_Lance {
+    lock
+    faceplayer
+    
+    if(!flag(FLAG_SYS_POKEMON_GET)) {
+        msgbox(Route100_Text_LanceBlock)
+    }
+    else {
+        if(flag(FLAG_DEFEATED_LANCE_ROUTE_100)) {
+            msgbox(Route100_Text_LanceDefeated, MSGBOX_AUTOCLOSE)
+        }
+        else {
+            msgbox(Route100_Text_LanceBattleIntro, MSGBOX_YESNO)
+
+            if(var(VAR_RESULT) == 1) {
+                msgbox(Route100_Text_LanceBattleAccept)
+                trainerbattle_no_intro(TRAINER_LANCE_ROUTE100, Route100_Text_LanceBattleLoss)
+                setflag(FLAG_DEFEATED_LANCE_ROUTE_100)                
+            }
+            else {
+                msgbox(Route100_Text_LanceBattleDecline)
+            }
+        }
+    }
+
+    release
+}
+
+text Route100_Text_LanceBlock {    
+    format("LANCE: Hi there, are you on an adventure too?\p"
+    "Oh, you'd like to get through.\p"
+    "Sorry, it looks like you don't have any POKéMON.\p"
+    "It would be pretty irresponsible of me to let you into this tall grass patch.")
+}
+
+text Route100_Text_LanceBattleIntro {
+    format(
+        "LANCE: Oh, looks like you have a POKéMON now. Congrats!\p"
+        "How about we have a quick battle?")
+}
+
+text Route100_Text_LanceBattleDecline {
+    format(
+        "Really? That's a shame.\p"
+        "Well, let me know if you change your mind.")
+}
+
+text Route100_Text_LanceBattleAccept {
+    format(
+        "Great! Don't worry, I won't go all out so soon.")
+}
+
+text Route100_Text_LanceBattleLoss {
+    format(
+        "LANCE: Wow, you're stronger than I thought!\p"
+        "I'm definitely going to have to step it up next time.")
+}
+
+text Route100_Text_LanceDefeated {
+    format(
+        "LANCE: Not sure where you're headed, but I hope to battle you again soon.")
+}
+
+movement Route100_MoveBack {
+    walk_up
+}

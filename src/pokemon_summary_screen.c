@@ -315,6 +315,7 @@ static void DestroyMoveSelectorSprites(u8);
 static void SetMainMoveSelectorColor(u8);
 static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
+static u8 * NatureColorText(u8);
 
 // const rom data
 #include "data/text/move_descriptions.h"
@@ -2929,19 +2930,26 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_SWITCH, gText_Switch, stringXPos, 1, 0, 0);
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL, gText_RentalPkmn, 0, 1, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE, gText_TypeSlash, 0, 1, 0, 0);
+
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE, gText_TypeSlash, 0, 1, 0, 0);        
     statsXPos = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_HP4, 42);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_HP4, statsXPos, 1, 0, 1);
+    
     statsXPos = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_Attack3, 42);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_Attack3, statsXPos, 17, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, "Test", statsXPos, 17, 0, 1);
+
     statsXPos = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_Defense3, 42);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_Defense3, statsXPos, 33, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, NatureColorText(STAT_DEF), statsXPos, 33, 0, 1);
+
     statsXPos = 2 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_SpAtk4, 36);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, gText_SpAtk4, statsXPos, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, NatureColorText(STAT_SPATK), statsXPos, 1, 0, 1);
+
     statsXPos = 2 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_SpDef4, 36);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, gText_SpDef4, statsXPos, 17, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, NatureColorText(STAT_SPDEF), statsXPos, 17, 0, 1);
+
     statsXPos = 2 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_Speed2, 36);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, gText_Speed2, statsXPos, 33, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT, NatureColorText(STAT_SPEED), statsXPos, 33, 0, 1);
+
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_ExpPoints, 6, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_NextLv, 6, 17, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS, gText_Status, 2, 1, 0, 1);
@@ -3459,20 +3467,21 @@ static void PrintRibbonCount(void)
 }
 
 // Based on https://www.pokecommunity.com/showpost.php?p=10024409&postcount=21
-static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n) {
-  static const u8 textNatureMinus[] = _("{COLOR_HIGHLIGHT_SHADOW}{BLUE}{TRANSPARENT}{07}"); // Blue
-  static const u8 textNaturePlus[] = _("{COLOR_HIGHLIGHT_SHADOW}{05}{TRANSPARENT}{06}"); // Red
-  static const u8 textNatureNone[] = _("{COLOR_HIGHLIGHT_SHADOW}{01}{TRANSPARENT}{DARK_GRAY}"); // Black
-  u8 *txtPtr;
-  if (natureMod == 0)
-    txtPtr = StringCopy(dst, textNatureNone);
-  else if (natureMod > 0)
-    txtPtr = StringCopy(dst, textNaturePlus);
-  else
-    txtPtr = StringCopy(dst, textNatureMinus);
+static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n) 
+{
+    static const u8 textNatureMinus[] = _("{COLOR_HIGHLIGHT_SHADOW}{BLUE}{TRANSPARENT}{07}"); // Blue
+    static const u8 textNaturePlus[] = _("{COLOR_HIGHLIGHT_SHADOW}{05}{TRANSPARENT}{06}"); // Red
+    static const u8 textNatureNone[] = _("{COLOR_HIGHLIGHT_SHADOW}{01}{TRANSPARENT}{DARK_GRAY}"); // Black
+    u8 *txtPtr;
+    if (natureMod == 0)
+        txtPtr = StringCopy(dst, textNatureNone);
+    else if (natureMod > 0)
+        txtPtr = StringCopy(dst, textNaturePlus);
+    else
+        txtPtr = StringCopy(dst, textNatureMinus);
 
-  ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, n);
-  DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
+    ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, n);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
 }
 
 static void BufferLeftColumnStats(void)
@@ -4253,4 +4262,31 @@ static void KeepMoveSelectorVisible(u8 firstSpriteId)
         gSprites[spriteIds[i]].data[1] = 0;
         gSprites[spriteIds[i]].invisible = FALSE;
     }
+}
+
+static u8 * NatureColorText(u8 stat)
+{
+    const s8 *natureMods = gNatureStatTable[sMonSummaryScreen->summary.nature];
+    const s8 natureMod = natureMods[stat - 1];
+
+    static const u8 textNatureMinus[] = _("{COLOR_HIGHLIGHT_SHADOW}{BLUE}{TRANSPARENT}{07}"); // Blue
+    static const u8 textNaturePlus[] = _("{COLOR_HIGHLIGHT_SHADOW}{05}{TRANSPARENT}{06}"); // Red
+    static const u8 textNatureNone[] = _("{COLOR_HIGHLIGHT_SHADOW}{01}{TRANSPARENT}{DARK_GRAY}"); // Black
+
+    u8 *string;
+    if (natureMod == 0)
+        StringCopy(string, textNatureNone);
+    else if (natureMod > 0)
+        StringCopy(string, textNaturePlus);
+    else
+        StringCopy(string, textNatureMinus);
+
+    DebugPrintf("natureMod is: %d", natureMod);
+    DebugPrintf("string is: %s", string);
+    DebugPrintf("gText_Attack3 is: %s", gText_Attack3);
+
+    return StringAppend(string, "{UP_ARROW}TEST");//StringAppend("TEST", string);
+
+    //ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, n);
+    //DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
 }

@@ -12440,3 +12440,18 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayLinkPlaceholder[] = {
     .species = SPECIES_KYOGRE,
     }
 };
+
+static const struct TrainerMonNoItemCustomMoves sParty_LanceRoute100[] = {
+    {
+    .iv = 0,
+    .lvl = 8,
+    .species = SPECIES_STARLY,
+    .moves = {MOVE_ASTONISH, MOVE_FURY_ATTACK, MOVE_QUICK_ATTACK, MOVE_NONE}
+    },
+    {
+    .iv = 0,
+    .lvl = 10,
+    .species = SPECIES_ARON,
+    .moves = {MOVE_METAL_CLAW, MOVE_ROCK_TOMB, MOVE_TACKLE, MOVE_MUD_SLAP}
+    }
+};
