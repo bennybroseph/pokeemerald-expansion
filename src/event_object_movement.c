@@ -1625,7 +1625,7 @@ static void MakeSpriteTemplateFromObjectEventTemplate(struct ObjectEventTemplate
 static u8 LoadDynamicFollowerPaletteFromGraphicsId(u16 graphicsId, bool8 shiny, struct SpriteTemplate *template) {
     u16 species = ((graphicsId & OBJ_EVENT_GFX_SPECIES_MASK) - OBJ_EVENT_GFX_MON_BASE);
     u8 form = (graphicsId >> OBJ_EVENT_GFX_SPECIES_BITS);
-    const struct CompressedSpritePalette *spritePalette = &(shiny ? gMonShinyPaletteTable : gMonPaletteTable)[species];
+    const struct CompressedSpritePalette *spritePalette = &(shiny ? gMonShinyFollowPaletteTable : gMonFollowPaletteTable)[species];
     u8 paletteNum = LoadDynamicFollowerPalette(species, form, shiny);
     if (template)
         template->paletteTag = spritePalette->tag;
@@ -1776,7 +1776,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool8 shiny) {
     // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
     // so that palette tags do not overlap
     // TODO: Fix this to use separate pallets from the regular sprites
-    const struct CompressedSpritePalette *spritePalette = &(shiny ? gMonShinyPaletteTable : gMonPaletteTable)[species];
+    const struct CompressedSpritePalette *spritePalette = &(shiny ? gMonShinyFollowPaletteTable : gMonFollowPaletteTable)[species];
     if ((paletteNum = IndexOfSpritePaletteTag(spritePalette->tag)) == 0xFF) { // Load compressed palette
       LoadCompressedSpritePalette(spritePalette);
       paletteNum = IndexOfSpritePaletteTag(spritePalette->tag); // Tag is always present
