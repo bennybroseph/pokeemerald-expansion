@@ -1,1 +1,9 @@
-mapscripts PetalburgWoods_East_MapScripts {}
+mapscripts PetalburgWoods_East_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+        call(Route100_EventScript_SetLancePosition)
+    }
+}
+
+script PetalburgWoods_East_EventScript {
+    setflag(FLAG_VISITED_PETALBURG_WOODS_EAST)
+}

@@ -3,7 +3,7 @@
   "name": "PetalburgWoods_East_House1",
   "layout": "LAYOUT_PETALBURG_WOODS_EAST_HOUSE1",
   "music": "MUS_PETALBURG",
-  "region_map_section": "MAPSEC_PETALBURG_WOODS",
+  "region_map_section": "MAPSEC_PETALBURG_WOODS_EAST",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",

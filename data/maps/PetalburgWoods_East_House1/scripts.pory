@@ -16,18 +16,18 @@ script PetalburgWoods_East_House1_EventScript_LanceTalk {
     release
 }
 
-text PetalburgWoods_East_House1_Text_LanceGreeting {    
+text PetalburgWoods_East_House1_Text_LanceGreeting {
     format("LANCE: Ah, I see you've found my little hideout.")
 }
 
-text PetalburgWoods_East_House1_Text_LanceDefeatedBefore {    
+text PetalburgWoods_East_House1_Text_LanceDefeatedBefore {
     format(
         "Come for another battle?\p"
         "Sorry to dissapoint, but I'm taking the day off.\p"
         "You're welcome to rest here as well if you'd like though.")
 }
 
-text PetalburgWoods_East_House1_Text_LanceNotDefeated {    
+text PetalburgWoods_East_House1_Text_LanceNotDefeated {
     format(
         "You're welcome to rest here if you need.\p"
         "Just make sure you close the door on your way out.")
