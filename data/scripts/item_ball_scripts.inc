@@ -657,3 +657,15 @@ MagmaHideout_4F_EventScript_ItemMaxRevive::
 MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
+
+Route100_EventScript_Item1::
+	finditem ITEM_POKE_BALL, 5
+	end
+
+Route102_South_EventScript_Item1::
+	call Route102_South_EventScript_ItemGem
+	end
+
+PetalburgWoods_East_EventScript_Item1::
+	finditem ITEM_SILVER_POWDER
+	end

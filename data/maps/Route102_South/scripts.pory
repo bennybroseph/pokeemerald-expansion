@@ -1,1 +1,9 @@
 mapscripts Route102_South_MapScripts {}
+
+script Route102_South_EventScript_ItemGem {
+	switch (var(VAR_STARTER_MON)) {
+		case 0: finditem(ITEM_GRASS_GEM)	// If Treecko
+		case 1: finditem(ITEM_FIRE_GEM)		// If Torchic
+		case 2: finditem(ITEM_WATER_GEM)	// If Mudkip
+	}
+}

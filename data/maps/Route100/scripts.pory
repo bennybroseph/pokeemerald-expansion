@@ -18,7 +18,7 @@ script Route100_EventScript_SetLancePosition {
 script Route100_EventScript_Lance {
     lock
     faceplayer
-    
+
     if(!flag(FLAG_SYS_POKEMON_GET)) {
         msgbox(Route100_Text_LanceBlock)
     }
@@ -32,7 +32,7 @@ script Route100_EventScript_Lance {
             if(var(VAR_RESULT) == 1) {
                 msgbox(Route100_Text_LanceBattleAccept)
                 trainerbattle_no_intro(TRAINER_LANCE_ROUTE100, Route100_Text_LanceBattleLoss)
-                setflag(FLAG_DEFEATED_LANCE_ROUTE_100)                
+                setflag(FLAG_DEFEATED_LANCE_ROUTE_100)
             }
             else {
                 msgbox(Route100_Text_LanceBattleDecline)
@@ -43,7 +43,7 @@ script Route100_EventScript_Lance {
     release
 }
 
-text Route100_Text_LanceBlock {    
+text Route100_Text_LanceBlock {
     format("LANCE: Hi there, are you on an adventure too?\p"
     "Oh, you'd like to get through.\p"
     "Sorry, it looks like you don't have any POKéMON.\p"
