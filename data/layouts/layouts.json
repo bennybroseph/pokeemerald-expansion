@@ -4430,6 +4430,36 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/Littlecave/border.bin",
       "blockdata_filepath": "data/layouts/Littlecave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE102_SOUTH",
+      "name": "Route102_South_Layout",
+      "width": 16,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route102_South/border.bin",
+      "blockdata_filepath": "data/layouts/Route102_South/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_EAST",
+      "name": "PetalburgWoods_East_Layout",
+      "width": 35,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/PetalburgWoods_East/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoods_East/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_EAST_HOUSE1",
+      "name": "PetalburgWoods_East_House1_Layout",
+      "width": 11,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PetalburgWoods_East_House1/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoods_East_House1/map.bin"
     }
   ]
 }

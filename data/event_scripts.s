@@ -1069,3 +1069,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Route100/scripts.inc"
 
 	.include "data/maps/Littlecave/scripts.inc"
+
+	.include "data/maps/Route102_South/scripts.inc"
+
+	.include "data/maps/PetalburgWoods_East/scripts.inc"
+
+	.include "data/maps/PetalburgWoods_East_House1/scripts.inc"
