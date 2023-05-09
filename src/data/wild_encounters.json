@@ -1940,12 +1940,12 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_BUNEARY"
               },
               {
                 "min_level": 8,
                 "max_level": 8,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_MINCCINO"
               },
               {
                 "min_level": 5,
@@ -1953,7 +1953,7 @@
                 "species": "SPECIES_ESPURR"
               },
               {
-                "min_level": 8,
+                "min_level": 5,
                 "max_level": 8,
                 "species": "SPECIES_VULPIX"
               }
